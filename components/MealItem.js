@@ -8,10 +8,15 @@ import {
   Platform,
   ImageBackground
 } from "react-native";
+import { useSelector } from "react-redux";
 
 import BodyText from "./BodyText";
 
 const MealItem = ({ itemData: { item }, navigation }) => {
+  const isFav = useSelector(state =>
+    state.mealsReducer.favoriteMeals.some(m => m.id === item.id)
+  );
+
   let TouchButton = TouchableOpacity;
   if (Platform.OS === "android" && Platform.Version >= "21") {
     TouchButton = TouchableNativeFeedback;
@@ -22,7 +27,8 @@ const MealItem = ({ itemData: { item }, navigation }) => {
       <TouchButton
         onPress={() =>
           navigation.navigate("MealDetail", {
-            item
+            item,
+            isFav
           })
         }
       >

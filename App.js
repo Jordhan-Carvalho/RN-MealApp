@@ -1,10 +1,14 @@
 import React, { useState } from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet } from "react-native";
 import * as Font from "expo-font";
 import { AppLoading } from "expo";
 import { useScreens } from "react-native-screens";
 
 import MealsNavigator from "./navigation/MealsNavigator";
+
+//redux
+import store from "./store/store";
+import { Provider } from "react-redux";
 
 // Increase the performance
 useScreens();
@@ -29,7 +33,11 @@ export default function App() {
     );
   }
 
-  return <MealsNavigator />;
+  return (
+    <Provider store={store}>
+      <MealsNavigator />
+    </Provider>
+  );
 }
 
 const styles = StyleSheet.create({});
