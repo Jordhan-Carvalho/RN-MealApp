@@ -46,7 +46,8 @@ const styles = StyleSheet.create({
   gridItemContainer: {
     flex: 1,
     borderRadius: 10,
-    overflow: "hidden",
+    elevation: 5,
+    overflow: Platform.OS === "android" ? "hidden" : "visible",
     margin: 15,
     height: 150
   },
@@ -56,7 +57,7 @@ const styles = StyleSheet.create({
     shadowColor: "black",
     shadowOffset: { width: 0, height: 2 },
     shadowRadius: 10,
-    elevation: 3,
+
     padding: 15,
     justifyContent: "flex-end",
     alignItems: "flex-end"
